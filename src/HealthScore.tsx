@@ -26,12 +26,23 @@ const COLORS = {
   border: "#E2E8F0",
 };
 
-const API_BASE =
-  typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? ""
-    : (document.currentScript as HTMLScriptElement | null)?.src
-        .replace(/\/[^/]*$/, "")
-        .replace(/\/assets$/, "") ?? "";
+// Detect API base from the embed script's origin
+function getApiBase(): string {
+  // In dev mode, API is on the same origin
+  if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+    return "";
+  }
+  // Find our script tag by looking for the embed script
+  const scripts = document.querySelectorAll('script[src*="embed"]');
+  for (const s of scripts) {
+    const src = (s as HTMLScriptElement).src;
+    if (src.includes("embed")) {
+      return new URL(src).origin;
+    }
+  }
+  return "";
+}
+const API_BASE = getApiBase();
 
 function ScoreRing({ score, size = 180 }: { score: number; size?: number }) {
   const [animated, setAnimated] = useState(false);
