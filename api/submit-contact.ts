@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
+const HUBSPOT_PORTAL_ID = "6320087";
+const HUBSPOT_FORM_ID = "4221d806-34a5-48f9-af1b-85cb218f8c2a";
+
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
@@ -37,95 +40,38 @@ export default async function handler(
     return res.status(400).json({ error: "Invalid email address" });
   }
 
-  const HUBSPOT_TOKEN = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
-
-  if (!HUBSPOT_TOKEN) {
-    console.error("HUBSPOT_PRIVATE_APP_TOKEN is not configured");
-    return res.status(500).json({ error: "Server configuration error" });
-  }
-
   try {
+    const fields = [
+      { name: "firstname", value: firstName },
+      { name: "lastname", value: lastName },
+      { name: "email", value: email },
+      { name: "company", value: company },
+      { name: "phone", value: phone || "" },
+      { name: "health_score", value: String(healthScore ?? "") },
+      { name: "estimated_annual_savings", value: String(estimatedSavings ?? "") },
+      { name: "rooftop_count", value: String(rooftopCount ?? "") },
+      { name: "health_score_grade", value: gradeLabel ?? "" },
+    ];
+
     const hubspotResponse = await fetch(
-      "https://api.hubapi.com/crm/v3/objects/contacts",
+      `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${HUBSPOT_TOKEN}`,
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          properties: {
-            firstname: firstName,
-            lastname: lastName,
-            email: email,
-            company: company,
-            phone: phone || "",
-            // Custom properties — must be created in HubSpot first
-            health_score: String(healthScore ?? ""),
-            estimated_annual_savings: String(estimatedSavings ?? ""),
-            rooftop_count: String(rooftopCount ?? ""),
-            health_score_grade: gradeLabel ?? "",
-            lead_source: "Dealership Health Score Assessment",
+          fields,
+          context: {
+            pageUri: req.headers.referer || "https://strategicsource.com/health-score",
+            pageName: "Dealership Expense Health Score",
           },
         }),
       }
     );
 
-    // If contact already exists, try to update by email
-    if (hubspotResponse.status === 409) {
-      const searchResponse = await fetch(
-        "https://api.hubapi.com/crm/v3/objects/contacts/search",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${HUBSPOT_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            filterGroups: [
-              {
-                filters: [
-                  { propertyName: "email", operator: "EQ", value: email },
-                ],
-              },
-            ],
-          }),
-        }
-      );
-
-      const searchData = await searchResponse.json();
-      const contactId = searchData.results?.[0]?.id;
-
-      if (contactId) {
-        await fetch(
-          `https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`,
-          {
-            method: "PATCH",
-            headers: {
-              Authorization: `Bearer ${HUBSPOT_TOKEN}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              properties: {
-                firstname: firstName,
-                lastname: lastName,
-                company: company,
-                phone: phone || "",
-                health_score: String(healthScore ?? ""),
-                estimated_annual_savings: String(estimatedSavings ?? ""),
-                rooftop_count: String(rooftopCount ?? ""),
-                health_score_grade: gradeLabel ?? "",
-                lead_source: "Dealership Health Score Assessment",
-              },
-            }),
-          }
-        );
-      }
-    } else if (!hubspotResponse.ok) {
+    if (!hubspotResponse.ok) {
       const errorData = await hubspotResponse.json();
-      console.error("HubSpot API error:", errorData);
-      // Still return success to the user — don't block their results
-      // over a CRM issue. Log the error for debugging.
+      console.error("HubSpot Forms API error:", errorData);
+      // Still return success — don't block the user's results over a CRM issue
     }
 
     res.setHeader("Access-Control-Allow-Origin", "*");
