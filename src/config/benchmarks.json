@@ -1,0 +1,20 @@
+{
+  "creditCard": { "name": "Credit Card Processing", "avgPerRoof": 10283, "projects": 129, "clients": 76 },
+  "creditBureau": { "name": "Credit Bureau", "avgPerRoof": 4112, "projects": 155, "clients": 109 },
+  "shipping": { "name": "Small Package Shipping", "avgPerRoof": 4929, "projects": 92, "clients": 75 },
+  "vehicleHistory": { "name": "Vehicle History Reports", "avgPerRoof": 6655, "projects": 63, "clients": 48 },
+  "uniforms": { "name": "Uniforms & Laundry", "avgPerRoof": 4321, "projects": 88, "clients": 55 },
+  "autoParts": { "name": "Auto Parts (Non-OE)", "avgPerRoof": 4372, "projects": 82, "clients": 68 },
+  "shopSupplies": { "name": "Shop Supplies", "avgPerRoof": 3303, "projects": 91, "clients": 67 },
+  "officeSupplies": { "name": "Office Supplies", "avgPerRoof": 2734, "projects": 89, "clients": 71 },
+  "printedProducts": { "name": "Printed Products", "avgPerRoof": 2704, "projects": 81, "clients": 67 },
+  "treasury": { "name": "Debt & Treasury Optimization", "avgPerRoof": 120392, "projects": 55, "clients": 53 },
+  "apProcessing": { "name": "Accounts Payable", "avgPerRoof": 12610, "projects": 16, "clients": 14 },
+  "warranty": { "name": "Warranty Recovery", "avgPerRoof": 31694, "projects": 10, "clients": 7 },
+  "wotc": { "name": "Work Opportunity Tax Credits", "avgPerRoof": 4052, "projects": 43, "clients": 43 },
+  "propertyTax": { "name": "Property Tax Reduction", "avgPerRoof": 3389, "projects": 27, "clients": 26 },
+  "telecom": { "name": "Telecom Services", "avgPerRoof": 1516, "projects": 31, "clients": 31 },
+  "waste": { "name": "Waste & Recycling", "avgPerRoof": 1337, "projects": 61, "clients": 41 },
+  "janitorial": { "name": "Janitorial Supplies", "avgPerRoof": 1251, "projects": 65, "clients": 53 },
+  "mats": { "name": "Mats & Carpets", "avgPerRoof": 1318, "projects": 71, "clients": 57 }
+}

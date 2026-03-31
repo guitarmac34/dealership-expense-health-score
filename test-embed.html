@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Embed - Simulating WordPress Page</title>
+  <style>
+    /* Simulate WordPress theme styles that could conflict */
+    body { font-family: Georgia, serif; background: #f0f0f0; margin: 0; padding: 20px; }
+    h1 { color: purple; font-size: 40px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    button { background: red; color: white; } /* WordPress theme button style */
+    input { border: 5px solid green; } /* WordPress theme input style */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WordPress Page (Simulated)</h1>
+    <p>This page has aggressive CSS styles to test shadow DOM isolation.</p>
+    <hr>
+
+    <!-- This is all the WordPress admin would paste -->
+    <div id="ss-health-score"></div>
+    <script src="./dist/embed.iife.js"></script>
+
+    <hr>
+    <p>Content below the assessment should be unaffected.</p>
+  </div>
+</body>
+</html>

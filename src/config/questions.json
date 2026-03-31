@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "text": "How many rooftops does your group operate?",
+    "context": "This helps us scale the benchmark data to your size.",
+    "categories": [],
+    "isRooftop": true,
+    "options": [
+      { "label": "1 to 3 locations", "score": 0, "factor": 2 },
+      { "label": "4 to 10 locations", "score": 0, "factor": 7 },
+      { "label": "11 to 25 locations", "score": 0, "factor": 18 },
+      { "label": "26+ locations", "score": 0, "factor": 35 }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "When did you last competitively bid your credit card processing?",
+    "context": "Credit card processing is the #1 category by savings, averaging $82,000+ per project in Year 1 across 129 projects.",
+    "categories": ["creditCard"],
+    "options": [
+      { "label": "Within the past 12 months", "score": 10, "factor": 0 },
+      { "label": "1 to 2 years ago", "score": 6, "factor": 0.4 },
+      { "label": "3+ years ago", "score": 2, "factor": 0.8 },
+      { "label": "We've never bid it", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "Do you know what you're paying per credit pull across all your stores?",
+    "context": "Credit bureau costs affect 109 of the 226 dealership groups we've benchmarked. Most groups don't realize how much these vary by location.",
+    "categories": ["creditBureau"],
+    "options": [
+      { "label": "Yes, and we've negotiated it recently", "score": 10, "factor": 0 },
+      { "label": "I know the cost but haven't renegotiated", "score": 5, "factor": 0.5 },
+      { "label": "It varies store to store", "score": 2, "factor": 0.8 },
+      { "label": "I'm not sure what we pay", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "Have you reviewed your FedEx/UPS shipping agreements in the past 3 years?",
+    "context": "Shipping costs are one of the most commonly overlooked expense categories. We've completed 92 shipping projects saving an average of $39,000+ per year.",
+    "categories": ["shipping"],
+    "options": [
+      { "label": "Yes, within the last year", "score": 10, "factor": 0 },
+      { "label": "It's been 1 to 3 years", "score": 4, "factor": 0.6 },
+      { "label": "More than 3 years", "score": 1, "factor": 0.9 },
+      { "label": "Never reviewed them", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "Do you know your exact cost per vehicle for vehicle history reports (Carfax, AutoCheck)?",
+    "context": "Vehicle history is one of the highest per-project savings categories. 48 dealership groups have saved an average of $53,000+ in Year 1.",
+    "categories": ["vehicleHistory"],
+    "options": [
+      { "label": "Yes, and we've optimized it", "score": 10, "factor": 0 },
+      { "label": "I know the cost but haven't negotiated", "score": 5, "factor": 0.5 },
+      { "label": "I'm not sure of our exact cost", "score": 1, "factor": 0.85 },
+      { "label": "We just pay whatever the bill says", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "Have you audited your uniform/laundry contracts and non-OE parts costs in the past 2 years?",
+    "context": "Uniform contracts and aftermarket parts are two of the most frequent areas where vendors raise prices without notice. Combined, they account for 170 projects in our dataset.",
+    "categories": ["uniforms", "autoParts"],
+    "options": [
+      { "label": "Both reviewed in the past 2 years", "score": 10, "factor": 0 },
+      { "label": "Reviewed one but not the other", "score": 5, "factor": 0.5 },
+      { "label": "Neither reviewed recently", "score": 1, "factor": 0.85 },
+      { "label": "We've never reviewed either", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "How recently have you reviewed your office supplies, printed products, and shop supplies contracts?",
+    "context": "These three categories represent 261 completed projects. They're often viewed as small-dollar items, but they add up quickly across multiple rooftops.",
+    "categories": ["officeSupplies", "printedProducts", "shopSupplies"],
+    "options": [
+      { "label": "Reviewed within the past year", "score": 10, "factor": 0 },
+      { "label": "1 to 2 years ago", "score": 5, "factor": 0.5 },
+      { "label": "3+ years ago or never", "score": 1, "factor": 0.85 },
+      { "label": "We don't track these by category", "score": 0, "factor": 1.0 }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "Have you explored treasury optimization or floorplan/debt restructuring?",
+    "context": "Debt and treasury optimization is the single highest-savings category we review, with average Year 1 savings of $963,000+ per project. But it applies more to larger groups.",
+    "categories": ["treasury"],
+    "options": [
+      { "label": "Yes, optimized in the past 2 years", "score": 10, "factor": 0 },
+      { "label": "We've looked at it but didn't act", "score": 5, "factor": 0.4 },
+      { "label": "No, we haven't explored this", "score": 1, "factor": 0.7 },
+      { "label": "I didn't know this was an option", "score": 0, "factor": 0.85 }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "Do you conduct regular compliance audits to verify vendor invoices match contracted rates?",
+    "context": "In the past 6 months alone, we recovered $170,000+ in billing errors and overcharges for our clients through compliance audits. This is money you've already been charged incorrectly.",
+    "categories": [],
+    "isCompliance": true,
+    "options": [
+      { "label": "Yes, we audit quarterly", "score": 10, "factor": 0 },
+      { "label": "Occasionally, when something looks off", "score": 4, "factor": 0 },
+      { "label": "Rarely or never", "score": 1, "factor": 0 },
+      { "label": "We don't have a process for this", "score": 0, "factor": 0 }
+    ]
+  },
+  {
+    "id": 10,
+    "text": "Of these 10 common expense categories, how many have you actively negotiated in the past 12 months?",
+    "context": "Credit cards, credit bureau, shipping, vehicle history, uniforms, auto parts, shop supplies, office supplies, printed products, and telecom. The average dealership group we work with finds savings in 15+ categories.",
+    "categories": ["wotc", "propertyTax", "telecom", "waste", "janitorial", "mats"],
+    "options": [
+      { "label": "8 to 10 categories", "score": 10, "factor": 0 },
+      { "label": "5 to 7 categories", "score": 6, "factor": 0.3 },
+      { "label": "2 to 4 categories", "score": 3, "factor": 0.6 },
+      { "label": "0 to 1 categories", "score": 0, "factor": 0.9 }
+    ]
+  }
+]
