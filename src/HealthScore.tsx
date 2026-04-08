@@ -209,28 +209,6 @@ export default function HealthScore({
         fontFamily: "'Inter', sans-serif",
       }}
     >
-      <div
-        style={{ backgroundColor: COLORS.navy }}
-        className="ss-py-5 ss-px-4 ss-text-center ss-text-white"
-      >
-        <a
-          href="https://strategicsource.com"
-          className="ss-inline-block ss-mb-1"
-        >
-          <img
-            src="https://strategicsource.com/wp-content/uploads/2023/01/logo.jpg"
-            alt="StrategicSource"
-            className="ss-h-6 ss-mx-auto ss-brightness-0 ss-invert ss-opacity-90 ss-mb-2"
-          />
-        </a>
-        <h1 className="ss-text-lg sm:ss-text-xl ss-font-bold ss-tracking-tight">
-          Dealership Expense Health Score
-        </h1>
-        <p className="ss-text-sm ss-opacity-70 ss-mt-1">
-          A 2-minute assessment backed by data from 226 dealership groups
-        </p>
-      </div>
-
       {screen === "questions" && (
         <div
           className="ss-sticky ss-top-0 ss-z-30 ss-bg-white ss-border-b ss-px-4 ss-py-3"
@@ -265,6 +243,21 @@ export default function HealthScore({
       )}
 
       <div className="ss-max-w-2xl ss-mx-auto ss-px-4 ss-py-8 sm:ss-py-12">
+        <div className="ss-text-center ss-mb-8">
+          <h1
+            className="ss-text-lg sm:ss-text-xl ss-font-bold ss-tracking-tight"
+            style={{ color: COLORS.navy }}
+          >
+            Dealership Expense Health Score
+          </h1>
+          <p
+            className="ss-text-sm ss-mt-1"
+            style={{ color: COLORS.textLight }}
+          >
+            A 2-minute assessment backed by data from 226 dealership groups
+          </p>
+        </div>
+
         {screen === "intro" && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
