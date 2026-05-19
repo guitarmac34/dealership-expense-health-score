@@ -25,13 +25,15 @@ export default async function handler(
     email,
     company,
     phone,
-    healthScore,
-    estimatedSavings,
     rooftopCount,
-    gradeLabel,
+    rooftopLabel,
+    totalCurrentSpend,
+    totalNewSpend,
+    totalEstimatedSavings,
+    bottomLineNetProfitImpact,
+    categoryBreakdown,
   } = req.body;
 
-  // Validate required fields
   if (!firstName || !lastName || !email || !company) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -47,10 +49,19 @@ export default async function handler(
       { name: "email", value: email },
       { name: "company", value: company },
       { name: "phone", value: phone || "" },
-      { name: "health_score", value: String(healthScore ?? "") },
-      { name: "estimated_annual_savings", value: String(estimatedSavings ?? "") },
       { name: "rooftop_count", value: String(rooftopCount ?? "") },
-      { name: "health_score_grade", value: gradeLabel ?? "" },
+      { name: "rooftop_range", value: rooftopLabel ?? "" },
+      { name: "total_current_spend", value: String(totalCurrentSpend ?? "") },
+      { name: "total_new_spend", value: String(totalNewSpend ?? "") },
+      {
+        name: "estimated_annual_savings",
+        value: String(totalEstimatedSavings ?? ""),
+      },
+      {
+        name: "bottom_line_net_profit_impact",
+        value: String(bottomLineNetProfitImpact ?? ""),
+      },
+      { name: "category_breakdown", value: categoryBreakdown ?? "" },
     ];
 
     const hubspotResponse = await fetch(
@@ -62,7 +73,7 @@ export default async function handler(
           fields,
           context: {
             pageUri: req.headers.referer || "https://strategicsource.com/health-score",
-            pageName: "Dealership Expense Health Score",
+            pageName: "Dealership Expense Savings Calculator",
           },
         }),
       }
@@ -78,7 +89,6 @@ export default async function handler(
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error("HubSpot submission error:", error);
-    // Return success anyway — don't block the user experience
     res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(200).json({ success: true });
   }
