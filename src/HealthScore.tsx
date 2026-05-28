@@ -32,11 +32,30 @@ function getApiBase(): string {
   if (typeof window !== "undefined" && window.location.hostname === "localhost") {
     return "";
   }
-  const scripts = document.querySelectorAll('script[src*="embed"]');
+  // Most reliable: the classic script currently executing IS our embed bundle,
+  // so its origin is exactly where the backend lives. Valid during the IIFE's
+  // synchronous execution even when loaded `async`.
+  const current = document.currentScript as HTMLScriptElement | null;
+  if (current?.src) {
+    try {
+      return new URL(current.src).origin;
+    } catch {
+      /* fall through */
+    }
+  }
+  // Fallback: match our specific bundle filename — NOT a loose "embed"
+  // substring, which falsely matches third-party scripts like HubSpot's
+  // js.usemessages.com tracking embed and sends the POST to the wrong origin.
+  const scripts = document.querySelectorAll<HTMLScriptElement>(
+    'script[src*="embed.iife.js"]'
+  );
   for (const s of scripts) {
-    const src = (s as HTMLScriptElement).src;
-    if (src.includes("embed")) {
-      return new URL(src).origin;
+    if (s.src) {
+      try {
+        return new URL(s.src).origin;
+      } catch {
+        /* fall through */
+      }
     }
   }
   return "";
