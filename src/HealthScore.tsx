@@ -58,7 +58,11 @@ function getApiBase(): string {
       }
     }
   }
-  return "";
+  // Durable fallback: the backend always lives at this fixed production
+  // domain. If a WP cache/CDN plugin renames or proxies the script so neither
+  // detection above resolves, we must NOT return "" — a relative POST would
+  // hit the WordPress origin (no /api route, no CORS) and fail with 405/CORS.
+  return "https://dealership-expense-health-score.vercel.app";
 }
 const API_BASE = getApiBase();
 

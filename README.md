@@ -28,7 +28,7 @@ All benchmark data is real — derived from **2,184 sourcing projects** across *
 WordPress Page                     Vercel
 ┌──────────────────────┐          ┌──────────────────────────┐
 │ <div id="ss-health-  │          │ React SPA                │
-│   score"></div>       │          │ /dist/embed.iife.js      │
+│   score"></div>       │          │ /embed.iife.js           │
 │ <script src="...     │ ───────► │                          │
 │   /embed.iife.js">   │          │ /api/submit-contact.ts   │
 │ </script>            │          │   (serverless function)  │
@@ -46,7 +46,7 @@ Add a **Custom HTML** block to any WordPress page with:
 
 ```html
 <div id="ss-health-score"></div>
-<script src="https://your-vercel-domain.vercel.app/dist/embed.iife.js" async></script>
+<script src="https://dealership-expense-health-score.vercel.app/embed.iife.js" async></script>
 ```
 
 Optional: set a custom CTA URL via data attribute:
