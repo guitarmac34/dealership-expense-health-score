@@ -306,35 +306,8 @@ export default function HealthScore({
               className="ss-text-base sm:ss-text-lg ss-mb-10 ss-max-w-xl ss-mx-auto"
               style={{ color: COLORS.textLight }}
             >
-              Enter your approximate annual spend in 10 categories. We'll show you your projected new annual spend, total savings, and the bottom-line net profit impact — using real average savings from 2,184 completed sourcing projects.
+              Enter your approximate annual spend in 10 categories. We'll show you your projected new annual spend, total savings, and the bottom-line net profit impact — using real average savings from 2,184 completed sourcing projects in the last 12 months
             </p>
-
-            <div className="ss-grid ss-grid-cols-1 sm:ss-grid-cols-3 ss-gap-4 ss-mb-10">
-              {[
-                { value: "226", label: "Dealership Groups Benchmarked" },
-                { value: "10", label: "High-Savings Expense Categories" },
-                { value: "2,184", label: "Sourcing Projects Completed" },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="ss-bg-white ss-rounded-2xl ss-p-5 ss-border ss-text-center"
-                  style={{ borderColor: COLORS.border }}
-                >
-                  <div
-                    className="ss-text-3xl ss-font-extrabold"
-                    style={{ color: COLORS.navy }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div
-                    className="ss-text-sm ss-mt-1"
-                    style={{ color: COLORS.textLight }}
-                  >
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
 
             <button
               onClick={startAssessment}
